@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="nofollow,noindex">
+    <title>Admin Posting</title>
+    <style>
+        body {
+            padding: 24px 12px;
+            margin: auto;
+        }
+
+        .cont {
+            background-color: bisque;
+            padding: 16px;
+        }
+
+        .gr {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+
+        .gr input,
+        .gr select {
+            padding: 16px;
+            border-radius: 6px;
+        }
+
+        .submit {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 16px;
+        }
+
+        .submit button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: large;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            margin: 8px;
+        }
+
+        button.reset {
+            background-color: gray;
+        }
+
+        .mikeka {
+            padding: 24px;
+            background-color: aliceblue;
+            height: 400px;
+            width: 90%;
+            overflow-y: scroll;
+        }
+
+        .mikeka .match {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px black solid;
+            border-right: 2px black solid;
+            border-left: 2px black solid;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px auto;
+        }
+
+        .mikeka .match div {
+            width: 20%;
+        }
+
+        .mikeka .match .mtc {
+            width: 40%;
+        }
+
+        .mikeka .match .mtc span {
+            display: block;
+        }
+
+        .mikeka .match .mtc .bt {
+            color: gray;
+        }
+
+        .mikeka .delete button {
+            background-color: red;
+            padding: 6px;
+            border: none;
+        }
+
+        .one-inpts {
+            text-align: center;
+        }
+
+        .one-inpts input {
+            width: 70%;
+            margin: 1px 12px;
+            font-size: medium;
+            padding: 14px 8px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one-m cont" style="text-align: center;">
+        <h3>One Million Params</h3>
+        <form action="/checking/one-m/1" method="post" target="_blank">
+            <div class="one-inpts">
+                <textarea name="data" id="d-data" cols="45" rows="18" placeholder="All data in 4 lines &#10;Date & Time &#10;League &#10;HomeTeam &#10;AwayTeam, Tip & Odd"></textarea> <br>
+                <textarea name="secret" id="secret" cols="45" rows="1" placeholder="Secret"></textarea>
+            </div>
+            <div class="submit">
+                <button id="txtar_sub" type="submit">Post 1 Mil</button>
+                <button type="reset" class="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+    <div class="one-m cont" style="text-align: center;">
+        <h3>A Football Report</h3>
+        <form action="/checking/afootballreport" method="post" target="_blank">
+            <div class="one-inpts">
+                <textarea name="data" id="d-data" cols="45" rows="18" placeholder="All data in 4 lines &#10;Date & Time &#10;League &#10;HomeTeam &#10;AwayTeam, Tip & Odd"></textarea> <br>
+                <textarea name="secret" id="secret" cols="45" rows="1" placeholder="Secret"></textarea>
+                <textarea name="trh" id="secret" cols="45" rows="1" placeholder="Trh"></textarea>
+            </div>
+            <div class="submit">
+                <button id="txtar_sub" type="submit">Post Afoot</button>
+                <button type="reset" class="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+    <br><br>
+    <form action="/post" method="post" target="_blank">
+        <div class="cont" style="margin-bottom: 24px;">
+            <h2 style="text-align: center;">Accumulator - <sub>Flashscore.mobi is +2</sub> </h2>
+            <div class="gr1 gr">
+                <input type="date" name="date" required>
+                <input type="text" placeholder="League" name="league" id="p_league" required>
+                <input type="text" placeholder="Match" name="match" id="p_match" required>
+                <%- include('./partials/options.ejs'); %>
+                <input type="number" placeholder="Odds" name="odds" required step="any" style="width: 60px;"
+                    id="p_odds">
+                <input type="text" placeholder="Secret word" name="secret" required style="width: 60px;">
+            </div>
+            <div class="submit">
+                <button type="submit" id="submit_mega">SUBMIT BET</button>
+                <button id="reset" type="reset" class="reset">RESET</button>
+            </div>
+        </div>
+    </form>
+    <br><br>
+
+    <form action="/post/supatips" method="post" target="_blank">
+        <div class="cont" style="margin-bottom: 24px;">
+            <h2 style="text-align: center;">SupaTips</h2>
+            <div class="gr1 gr">
+                <input type="date" name="siku" required>
+                <input type="time" name="time" required>
+                <input type="text" name="league" placeholder="league">
+                <input type="text" placeholder="Match" name="match" required>
+                <select name="tip" id="opt">
+                    <option value="1X">1X</option>
+                    <option value="X2">X2</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="Over 1.5">Over 1.5</option>
+                    <option value="Over 2.5">Over 2.5</option>
+                    <option value="Under 3.5">Under 3.5</option>
+                </select>
+                <input type="text" placeholder="Secret word" name="secret" required>
+            </div>
+            <div class="submit">
+                <button type="submit">SUBMIT BET</button>
+                <button id="reset" type="reset" class="reset">RESET</button>
+            </div>
+        </div>
+    </form>
+    <br><br>
+    <form action="/post/movie" method="post" target="_blank">
+        <div class="cont" style="margin-bottom: 24px;">
+            <h2 style="text-align: center;">Post Movie 480p/720p</h2>
+            <div class="gr1 gr">
+                <input type="text" name="mov_link" placeholder="The Movie DB Link" required>
+                <!-- <input type="text" name="trailer" placeholder="Trailer ID" required> -->
+                <input type="text" name="p480" placeholder="480p" required>
+                <input type="text" name="p720" placeholder="720p" required>
+                <input type="text" placeholder="Secret word" name="secret" required>
+            </div>
+            <div class="submit">
+                <button type="submit">POST MOVIE</button>
+                <button id="reset" type="reset" class="reset">RESET</button>
+            </div>
+        </div>
+    </form>
+
+    <br><br><br>
+
+    <h2>Megas</h2>
+    <div class="mikeka">
+        <% for( let mk of mikeka ) { %>
+        <div class="match">
+            <div class="dt">
+                <%= mk.date %>
+            </div>
+            <div class="mtc">
+                <span class="gm">
+                    <%= mk.match %>
+                </span>
+                <span class="bt">
+                    <%= mk.bet %> @ <%= mk.odds %>
+                </span>
+            </div>
+            <div class="delete" style=" width: 30;">
+                <form action="/delete/<%= mk._id %>" method="post"
+                    style="display: flex; justify-content: space-between;">
+                    <input type="text" name="secret" placeholder="secret" required style="display: block;">
+                    <button type="submit" style="display: flex;">Delete</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <br>
+    <hr><br>
+    <!-- betslips -->
+    <h2>Betslips</h2>
+    <div class="mikeka">
+        <% for( let mk of slips ) { %>
+        <div class="match">
+            <div class="dt">
+                <%= mk.date %>
+            </div>
+            <div class="mtc">
+                <span class="gm">
+                    <%= mk.match %>
+                </span>
+                <span class="bt">
+                    <%= mk.tip %> @ <%= mk.odds %>
+                </span>
+            </div>
+            <div class="delete" style=" width: 30;">
+                <form action="/delete-slip/<%= mk._id %>" method="post"
+                    style="display: flex; justify-content: space-between;">
+                    <input type="text" name="secret" placeholder="secret" required style="display: block;">
+                    <button type="submit" style="display: flex;">Delete</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <br><br><br>
+    <h2>Editing Mikeka DB</h2>
+    <div class="mikeka">
+        <% for( let mk of formatteMikeka ) { %>
+        <div class="editmatch" id="<%= mk._id %>">
+            <div class="oneg">
+                <div class="dt">
+                    <%= mk.date %>
+                </div>
+                <div class="mtc">
+                    <span class="gm">
+                        <%= mk.match %>
+                    </span> <br>
+                    <span class="bt">
+                        <%= mk.bet %> @ <%= mk.odds %>
+                    </span>
+                </div>
+            </div>
+            <div class="edit" style=" width: 30;">
+                <form action="/edit-mkeka/<%= mk._id %>" method="post"
+                    style="display: flex; justify-content: space-between;">
+                    <%- include('./partials/options.ejs'); %>
+                    <input type="date" name="date" id="siku" value="<%= mk.date %>">
+                    <input type="text" name="league" id="league" value="<%= mk.league %>">
+                    <input type="number" placeholder="Odds" name="odds" required step="any" value="<%= mk.odds %>">
+                    <input type="text" name="secret" placeholder="secret" required style="display: block;">
+                    <button type="submit" style="display: flex;">Edit</button>
+                </form>
+            </div>
+            <br>
+            <hr><br>
+        </div>
+        <% } %>
+    </div>
+    <br><br><br>
+
+    <!-- editing Betslips -->
+    <h2>Editing Betslips</h2>
+    <div class="mikeka">
+        <% for( let mk of formatteSlips ) { %>
+        <div class="editmatch" id="<%= mk._id %>">
+            <div class="oneg">
+                <div class="dt">
+                    <%= mk.date %>
+                </div>
+                <div class="mtc">
+                    <span class="gm">
+                        <%= mk.match %>
+                    </span> <br>
+                    <span class="bt">
+                        <%= mk.tip %> @ <%= mk.odd %>
+                    </span>
+                </div>
+            </div>
+            <div class="edit" style=" width: 30;">
+                <form action="/edit-slip/<%= mk._id %>" method="post"
+                    style="display: flex; justify-content: space-between;">
+                    <%- include('./partials/options.ejs'); %>
+                    <input type="date" name="date" id="siku" value="<%= mk.date %>">
+                    <input type="text" name="league" id="league" value="<%= mk.league %>">
+                    <input type="number" placeholder="Odds" name="odds" required step="any" value="<%= mk.odd %>">
+                    <input type="text" name="secret" placeholder="secret" required style="display: block;">
+                    <button type="submit" style="display: flex;">Edit</button>
+                </form>
+            </div>
+            <br>
+            <hr><br>
+        </div>
+        <% } %>
+    </div>
+
+    <script>
+        document.getElementById('submit_mega').addEventListener('click', () => {
+            setTimeout(() => {
+                document.getElementById('p_match').value = '';
+                document.getElementById('p_league').value = '';
+            }, 2000)
+        })
+    </script>
+</body>
+
+</html>

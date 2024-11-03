@@ -1,0 +1,63 @@
+<div class="cont" itemscope>
+    <h2 class="header" id="mega-za-leo">
+        <div>
+            <i class="fa-solid fa-star star8"></i>
+            Mega Odds de Hoje 
+            <i class="fa-solid fa-star star8"></i>
+        </div>
+        <div style="font-size: 12px; margin-top: 12px;">📅 <%= jumasiku.leo %>: <%= trh.leo %></div>
+    </h2>
+    <ul class="list-group list-group-flush">
+        <% mikeka.forEach(el=> { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="ms-2 me-auto">
+                <div class="date">
+                    <div class="dtime">
+                        <%= el.time %>
+                    </div>
+                    <div class="ligi">
+                        <%= el.league %>
+                    </div>
+                </div>
+                <div class="fw-bold">
+                    <div class="match">
+                        <%= el.match.split(' - ')[0] %><br>
+                        <%= el.match.split(' - ')[1] %>
+                    </div>
+                    <div class="bet" onclick="window.open('/888bet/register')"><%= el.bet %></div>
+                </div>
+            </div>
+            <span class="badge rounded-pill" onclick="window.open('/888bet/register')" style="width: 48px; text-align: center; font-weight: bold; padding: 17px 8px; cursor: pointer; background-color: #fc6200; color: black; font-family: serif; font-size: 16px;">
+                <%= String(el.odds).padEnd(4, '0') %>
+            </span>
+        </li>
+        <% }) %>
+    </ul>
+</div>
+<div class="total">
+    <div class="subtotal">
+        <div class="btm w40">
+            <span class="hdr">Bookie</span>
+            <span class="ct" style="background-color: black; color: #fc6200; font-weight: bold;">888Bet</span>
+        </div>
+        <div class="btm w25">
+            <span class="hdr">Odds Totais</span>
+            <span class="ct">
+                <%= Number(megaOdds).toLocaleString('en-US') %>
+            </span>
+        </div>
+        <div class="btm w25">
+            <span class="hdr">Bônus</span>
+            <span class="ct">400%</span>
+        </div>
+    </div>
+    <div class="tangazo">
+        * Ganhe uma FreeBet de 100% do seu valor apostado, até 1,000 MT
+    </div>
+    <div class="sasa">
+        <button onclick="window.open('/888bet/register')" style="width: 80%; max-width: 300px;">
+            <i class="fa-solid fa-circle-dollar-to-slot"></i> 
+            ATIVAR FREBET 100%&nbsp; 
+            <i class="fa-solid fa-up-right-from-square"></i></button>
+    </div>
+</div>
