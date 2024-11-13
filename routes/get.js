@@ -166,7 +166,9 @@ router.get('/tips/vip', async (req, res) => {
         for (let od of slip) {
             slipOdds = (slipOdds * od.odd).toFixed(2)
         }
-        res.render('3-landing/landing', { slip, slipOdds })
+
+        let jumasiku = { juzi: WeekDayFn(_s_juma), jana: WeekDayFn(_d_juma), leo: WeekDayFn(d_juma), kesho: WeekDayFn(k_juma) }
+        res.render('3-landing/landing', { slip, slipOdds, jumasiku })
     } catch (err) {
         console.log(err.message)
     }
