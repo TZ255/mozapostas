@@ -146,7 +146,26 @@ router.get('/contact/telegram', (req, res) => {
 
 router.get('/tips/vip', async (req, res) => {
     try {
-        let d = new Date().toLocaleDateString('en-GB', { timeZone: 'Africa/Maputo' })
+        //leo
+        let nd = new Date()
+        let d = nd.toLocaleDateString('en-GB', { timeZone: 'Africa/Maputo' })
+        let d_juma = nd.toLocaleString('en-GB', { timeZone: 'Africa/Maputo', weekday: 'long' })
+        //jana
+        let _nd = new Date()
+        _nd.setDate(_nd.getDate() - 1)
+        let _d = _nd.toLocaleDateString('en-GB', { timeZone: 'Africa/Maputo' })
+        let _d_juma = _nd.toLocaleString('en-GB', { timeZone: 'Africa/Maputo', weekday: 'long' })
+        //juzi
+        let _jd = new Date()
+        _jd.setDate(_jd.getDate() - 2)
+        let _s = _jd.toLocaleDateString('en-GB', { timeZone: 'Africa/Maputo' })
+        let _s_juma = _jd.toLocaleString('en-GB', { timeZone: 'Africa/Maputo', weekday: 'long' })
+        //kesho
+        let new_d = new Date()
+        new_d.setDate(new_d.getDate() + 1)
+        let kesho = new_d.toLocaleDateString('en-GB', { timeZone: 'Africa/Maputo' })
+        let k_juma = new_d.toLocaleString('en-GB', { timeZone: 'Africa/Maputo', weekday: 'long' })
+
         let slip = await betslip.find({ date: d })
 
         //reformat mozambique hours fn
@@ -168,6 +187,7 @@ router.get('/tips/vip', async (req, res) => {
         }
 
         let jumasiku = { juzi: WeekDayFn(_s_juma), jana: WeekDayFn(_d_juma), leo: WeekDayFn(d_juma), kesho: WeekDayFn(k_juma) }
+
         res.render('3-landing/landing', { slip, slipOdds, jumasiku })
     } catch (err) {
         console.log(err.message)
